@@ -1,0 +1,11 @@
+{
+    "artefact_name": "my workflow",
+    "artefact_id": "{{ cookiecutter.artefact_name.lower().replace(' ', '-').replace(' ','-') }}-nf",
+    "artefact_git": "https://github.com/stracquadaniolab/{{ cookiecutter.artefact_id }}.git",
+    "artefact_org": "stracquadaniolab",
+    "artefact_author": "Giovanni Stracquadanio",
+    "artefact_email": "giovanni.stracquadanio@ed.ac.uk",
+    "artefact_description": "A short description of the project.",
+    "artefact_license": ["MIT", "BSD", "None"]
+}
+

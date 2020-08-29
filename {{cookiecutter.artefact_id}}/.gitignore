@@ -1,0 +1,5 @@
+work/
+results/
+*.pyc
+.vscode
+.nextflow*

@@ -1,0 +1,8 @@
+name: {{ cookiecutter.artefact_id }}
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - argh
