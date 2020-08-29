@@ -38,7 +38,10 @@ Custom code need by the pipeline should be added to the `bin` directory; the
 code in this directory is automatically added to `$PATH` when running the
 pipeline, which makes custom scripts easily portable and accessible. If you are
 using Python, you should have a `main.py` file, which calls other commands
-through `argh`. See the auto-generated pipeline for an example.
+through `argh`. See the auto-generated pipeline for an example. The template
+comes with an auto-generated `.devcontainer.json` file, which allows developing
+your scripts inside a container with all the software specified in
+`environment.yml` using `vscode`.
 
 ### Software management
 
@@ -46,10 +49,10 @@ Third-party software is managed by `conda` and specified in a `environment.yml`
 file; keep the `yml` file updated and specify the version of each software you
 are using.
 
-To ensure reproducibility and facilitate running experiments between local
-machine and HPC clusters, it is strongly recommended to build a Docker image.
-The bundled `Dockerfile` can be used to build an image with the software
-specified in your `environment.yml` file. To do that, run:
+To ensure reproducibility and running experiments on local machines and HPC
+clusters, it is strongly recommended to build a Docker image. The bundled
+`Dockerfile` can be used to build an image with the software specified in your
+`environment.yml` file. To do that, run:
 
 ```bash
 docker build . -t stracquadaniolab/my-pipeline -f containers/Dockerfile
