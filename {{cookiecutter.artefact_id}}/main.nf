@@ -3,17 +3,16 @@ nextflow.enable.dsl=2
 
 process PrintHelloOnFile {
 
-    publishDir "${params.resultsDir}", pattern: "hello.txt", mode: 'copy'
+    publishDir "${params.resultsDir}", pattern: "results.txt", mode: 'copy'
 
     input:
         path data
 
     output:
-        path 'hello.txt'
+        path 'results.txt'
 
     """
-        main.py > hello.txt
-        cat ${data} >> hello.txt
+        fit.py --filename ${data} > results.txt
     """
 
 }

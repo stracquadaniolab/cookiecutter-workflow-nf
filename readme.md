@@ -37,11 +37,13 @@ an overview of the framework.
 Custom code need by the pipeline should be added to the `bin` directory; the
 code in this directory is automatically added to `$PATH` when running the
 pipeline, which makes custom scripts easily portable and accessible. If you are
-using Python, you should have a `main.py` file, which calls other commands
-through `argh`. See the auto-generated pipeline for an example. The template
-comes with an auto-generated `.devcontainer.json` file, which allows developing
-your scripts inside a container with all the software specified in
-`environment.yml` using `vscode`.
+using Python, you should have a file for each class of operations, e.g. a file
+`plots.py` for all the plots, and use `typer` to have standard Unix command line
+interface. See the auto-generated pipeline for an example. 
+
+The template comes with an auto-generated `.devcontainer.json` file, which
+allows developing your scripts inside a container with all the software
+specified in `environment.yml` using `vscode`.
 
 ### Software management
 
