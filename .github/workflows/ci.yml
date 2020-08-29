@@ -1,0 +1,33 @@
+name: "test"
+on:
+  push:
+    branches:
+        - 'master'
+    tags-ignore:
+        - '*'
+        
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.7, 3.8]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install cookiecutter 
+        run: |
+          pip install cookiecutter
+      - name: Test cookiecutter
+        run: |
+          cookiecutter . --no-input
+      - name: Bump version and push tag
+        id: semver
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: none
