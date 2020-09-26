@@ -11,9 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 'Test Docker image'
-        run: |
-          docker build . -t {% raw %}docker.pkg.github.com/${{ github.repository }}{% endraw %}/{{ cookiecutter.artefact_id }} -f ./containers/Dockerfile
+      - name: "Build Docker image"
+        run: | {% raw %}
+          docker build . -f containers/Dockerfile \
+            -t ghcr.io/${{ github.repository }}:latest \
+            -t ghcr.io/${{ github.repository }}:v0.0.0
+          {% endraw %}
       - name: 'Install Nextflow'
         run: |
           wget -qO- get.nextflow.io | bash
@@ -22,21 +25,13 @@ jobs:
         run: |
           chmod +x bin/*
           nextflow run . -profile test,ci,docker      
-      - name: Bump version and push tag
-        id: semver
-        uses: anothrNick/github-tag-action@1.17.2
-        env:
-          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-          WITH_V: true
-          DEFAULT_BUMP: none
-      - name: "Release Docker image on GitHub Packages"
-        if: {% raw %}${{ steps.semver.outputs.tag }}{% endraw %}
-        uses: docker/build-push-action@v1
-        with:
-          dockerfile: ./containers/Dockerfile
-          registry: docker.pkg.github.com
-          repository: {% raw %}${{ github.repository }}{% endraw %}/{{ cookiecutter.artefact_id }}
-          tags: latest, {% raw %}${{ steps.semver.outputs.tag }}{% endraw %}
-          tag_with_ref: true
-          username: {% raw %}${{ github.actor }}{% endraw %}
-          password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+      - name: Login to GitHub Container Registry
+        if: startsWith(github.event.ref, 'refs/tags')
+        run: |
+            {% raw %}echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin{% endraw %}
+      - name: "Release Docker image"
+        if: startsWith(github.event.ref, 'refs/tags')
+        run: | {% raw %}
+          docker push ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ github.repository }}:v0.0.0
+          {% endraw %}
