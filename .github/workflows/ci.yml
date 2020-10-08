@@ -19,3 +19,10 @@ jobs:
       - name: Test cookiecutter
         run: |
           cookiecutter . --no-input
+      - name: Bump version and push tag
+        id: semver
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: none
