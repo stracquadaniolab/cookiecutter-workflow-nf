@@ -1,7 +1,7 @@
 FROM  continuumio/miniconda3
 
-LABEL org.stracquadaniolab.name="{{ cookiecutter.artefact_id }}"
-LABEL org.stracquadaniolab.description="{{ cookiecutter.artefact_description }}"
+LABEL org.stracquadaniolab.name="{{ cookiecutter.artifact_id }}"
+LABEL org.stracquadaniolab.description="{{ cookiecutter.artifact_description }}"
 
 RUN apt-get update \
     && apt-get install --yes rename tini procps curl \

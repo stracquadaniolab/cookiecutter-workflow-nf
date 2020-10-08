@@ -1,8 +1,8 @@
-# {{ cookiecutter.artefact_id }}
+# {{ cookiecutter.artifact_id }}
 
-![](https://github.com/{{ cookiecutter.artefact_org }}/{{ cookiecutter.artefact_id }}/workflows/build/badge.svg)
+![](https://github.com/{{ cookiecutter.artifact_org }}/{{ cookiecutter.artifact_id }}/workflows/build/badge.svg)
 
-{{ cookiecutter.artefact_description }}
+{{ cookiecutter.artifact_description }}
 
 ## Configuration
 
@@ -16,13 +16,13 @@
 ### Install or update the workflow
 
 ```bash
-nextflow pull {{ cookiecutter.artefact_org }}/{{ cookiecutter.artefact_id }}
+nextflow pull {{ cookiecutter.artifact_org }}/{{ cookiecutter.artifact_id }}
 ```
 
 ### Run the analysis
 
 ```bash
-nextflow run {{ cookiecutter.artefact_org }}/{{ cookiecutter.artefact_id }}
+nextflow run {{ cookiecutter.artifact_org }}/{{ cookiecutter.artifact_id }}
 ```
 
 ## Results
@@ -33,4 +33,4 @@ nextflow run {{ cookiecutter.artefact_org }}/{{ cookiecutter.artefact_id }}
 
 ## Authors
 
-- {{ cookiecutter.artefact_author }}
+- {{ cookiecutter.artifact_author }}

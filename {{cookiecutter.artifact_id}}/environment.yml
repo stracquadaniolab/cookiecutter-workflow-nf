@@ -1,4 +1,4 @@
-name: {{ cookiecutter.artefact_id }}
+name: {{ cookiecutter.artifact_id }}
 channels:
   - defaults
   - bioconda

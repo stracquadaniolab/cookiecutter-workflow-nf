@@ -1,11 +1,11 @@
 {
-    "artefact_name": "my workflow",
-    "artefact_id": "{{ cookiecutter.artefact_name.lower().replace(' ', '-').replace(' ','-') }}-nf",
-    "artefact_git": "https://github.com/stracquadaniolab/{{ cookiecutter.artefact_id }}.git",
-    "artefact_org": "stracquadaniolab",
-    "artefact_author": "Giovanni Stracquadanio",
-    "artefact_email": "giovanni.stracquadanio@ed.ac.uk",
-    "artefact_description": "A short description of the project.",
-    "artefact_license": ["MIT", "BSD", "None"]
+    "artifact_name": "my workflow",
+    "artifact_id": "{{ cookiecutter.artifact_name.lower().replace(' ', '-').replace(' ','-') }}-nf",
+    "artifact_git": "https://github.com/stracquadaniolab/{{ cookiecutter.artifact_id }}.git",
+    "artifact_org": "stracquadaniolab",
+    "artifact_author": "Giovanni Stracquadanio",
+    "artifact_email": "giovanni.stracquadanio@ed.ac.uk",
+    "artifact_description": "A short description of the project.",
+    "artifact_license": ["MIT", "BSD", "None"]
 }
 
