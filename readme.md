@@ -1,7 +1,7 @@
 # A template for Nextflow workflows
-![](https://github.com/stracquadaniolab/cookiecutter-workflow-nf/workflows/test/badge.svg)
+![](https://github.com/stracquadaniolab/cookiecutter-workflow-nf/workflows/build/badge.svg)
 
-A standardized directory structure to build workflow using Nextflow. 
+A standardized directory structure to build workflows using Nextflow.
 
 ## Directory structure
 
