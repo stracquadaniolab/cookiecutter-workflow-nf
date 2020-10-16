@@ -57,10 +57,10 @@ clusters, it is strongly recommended to build a Docker image. The bundled
 `environment.yml` file. To do that, run:
 
 ```bash
-docker build . -t stracquadaniolab/my-pipeline -f containers/Dockerfile
+docker build . -t ghcr.io/stracquadaniolabM/<my-workflow> -f containers/Dockerfile
 ```
 
-where `my-pipeline` is the name of your workflow.
+where `<my-workflow>` is the name of your workflow.
 
 ### Testing
 
@@ -68,6 +68,23 @@ It is important to build workflows that can be automatically tested; thus, you
 will have to add small test data into the `testdata` directory, and modify the
 `conf/test.config` configuration file to specify any parameter needed for your
 workflow to run. See the auto-generated pipeline for an example.
+
+### Versioning
+
+All projects must follow a semantic version scheme. The format adopted is
+`MAJOR.MINOR.PATCH`:
+
+- MAJOR: drastic changes that make disruptive changes with a previous release. 
+- MINOR: add functions to the workflow but keeps everything compatible within
+  the MAJOR version.
+- PATCH: bug fixes or settings update.
+
+To update the version of your workflow, you should run the following command from 
+the command line:
+
+```
+bump2version <major|minor|patch>
+```
 
 ### Documentation
 
