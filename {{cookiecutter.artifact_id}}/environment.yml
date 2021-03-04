@@ -1,0 +1,10 @@
+name: {{ cookiecutter.artifact_id }}
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - typer
+  - black
+  - pylint
