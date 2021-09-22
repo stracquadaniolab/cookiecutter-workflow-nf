@@ -1,12 +1,19 @@
 {
-    // setup a container to develop a python package using miniconda3
-	"name": "{{ cookiecutter.artifact_name }}",
-	"image": "continuumio/miniconda3",
+	// setup a container to develop a python package using miniconda3
+	"name": "{{ cookiecutter.archetype_name }}",
+	"dockerFile": "containers/Dockerfile",
 	"context": ".",
+	"build": {"args": {"CONDA_FILE": "containers/env.dev.yml"}},
 
 	// Set *default* container specific settings.json values.
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash",
+
+		"terminal.integrated.profiles.linux": {
+			"bash": {
+				"path": "/bin/bash",
+			}
+		},
+		"terminal.integrated.defaultProfile.windows": "bash",
 		"python.pythonPath": "/opt/conda/bin/python",
 		"python.formatting.provider": "black",
 		"python.formatting.blackPath": "/opt/conda/bin/black",
@@ -15,7 +22,7 @@
 				90
 			]
 		},
-    },
+	},
 
 	// extensions for vscode
 	"extensions": [
@@ -27,6 +34,4 @@
 		"mhutchie.git-graph"
 	],
 
-	// install required packages
-	"postCreateCommand": "conda env update -n base --file environment.yml && conda clean --all --yes",
 }
