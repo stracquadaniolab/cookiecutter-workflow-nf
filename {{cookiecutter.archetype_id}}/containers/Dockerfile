@@ -12,7 +12,7 @@ ENTRYPOINT ["tini", "--"]
 CMD ["/bin/bash"]
 
 ## main container
-ARG CONDA_FILE=env.base.yml
+ARG CONDA_FILE=containers/env.base.yml
 FROM base_container
 # adding opencontainer labels to link registry to github repository
 LABEL org.opencontainers.image.title="{{ cookiecutter.archetype_id }}"
@@ -24,6 +24,6 @@ LABEL org.opencontainers.image.vendor="{{ cookiecutter.archetype_org }}"
 LABEL org.opencontainers.image.authors="{{ cookiecutter.archetype_author }}"
 LABEL org.opencontainers.image.revision="v0.0.0"
 
-COPY --chown=micromamba:micromamba ${CONDA_FILE} /tmp/${CONDA_FILE}
-RUN micromamba install -y -n base -f /tmp/${CONDA_FILE} && \
+COPY --chown=micromamba:micromamba ${CONDA_FILE} /tmp
+RUN micromamba install -y -n base -f /tmp/`basename ${CONDA_FILE}` && \
     micromamba clean --all --yes
