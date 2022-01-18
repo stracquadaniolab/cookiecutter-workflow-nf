@@ -12,7 +12,7 @@ process PrintHelloOnFile {
         path 'results.txt'
 
     """
-        fit.py --filename ${data} > results.txt
+        fit.py ${data} > results.txt
     """
 
 }
