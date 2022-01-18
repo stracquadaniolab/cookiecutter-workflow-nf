@@ -6,6 +6,8 @@
     "archetype_author": "Giovanni Stracquadanio",
     "archetype_email": "giovanni.stracquadanio@ed.ac.uk",
     "archetype_description": "A short description of the project.",
-    "archetype_license": ["MIT", "BSD", "None"]
+    "archetype_license": ["MIT", "BSD", "None"],
+    "_copy_without_render": [
+        ".github/workflows/ci.yml"
+    ]
 }
-
