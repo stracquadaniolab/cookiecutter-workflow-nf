@@ -39,8 +39,8 @@ Custom code need by the pipeline should be added to the `bin` directory; the
 code in this directory is automatically added to `$PATH` when running the
 pipeline, which makes custom scripts easily portable and accessible. If you are
 using Python, you should have a file for each class of operations, e.g. a file
-`plots.py` for all the plots, and use `typer` to have standard Unix command line
-interface. See the auto-generated pipeline for an example. 
+`plots.py` for all the plots, and use `docopt` to have standard Unix command
+line interface. See the auto-generated pipeline for an example. 
 
 The template comes with an auto-generated `.devcontainer.json` file, which
 allows developing your scripts inside a container with all the software
@@ -58,19 +58,23 @@ clusters, it is strongly recommended to build a Docker image. The bundled
 `environment.yml` file. To do that, run:
 
 ```bash
-docker build . -t ghcr.io/stracquadaniolabM/<my-workflow> -f containers/Dockerfile
+docker build . -t ghcr.io/stracquadaniolab/<my-workflow>:v0.0.0 -f containers/Dockerfile
 ```
 
-where `<my-workflow>` is the name of your workflow.
+where `<my-workflow>` is the name of your workflow, and the version should match
+the one in the config files.
 
 ### Testing
 
 It is important to build workflows that can be automatically tested; thus, you
 will have to add small test data into the `testdata` directory, and modify the
-`conf/test.config` configuration file to specify any parameter needed for your
-workflow to run. See the auto-generated pipeline for an example.
+`test` profile in the `conf/base.config` file to specify any parameter needed
+for your workflow to run. See the auto-generated pipeline for an example.
 
-### Versioning
+**IMPORTANT: if you are using an Apple M1, you should also specify the profile
+apple, to make sure you can run your Docker image.**
+
+### Versioning
 
 All projects must follow a semantic version scheme. The format adopted is
 `MAJOR.MINOR.PATCH`:
@@ -110,7 +114,7 @@ the code and build a Docker image; the workflow is stored in
 ### Step 1: Create a new workflow
 
 ```
-cookiecutter git@github.com:stracquadaniolab/cookiecutter-workflow-nf.git
+cookiecutter https://github.com/stracquadaniolab/cookiecutter-workflow-nf.git
 ```
 
 You will be asked a number of questions to setup your workflow.
@@ -135,11 +139,16 @@ from GitHub and run it on the test data.
 ```bash
 nextflow run stracquadaniolab/my-pipeline -profile test,docker
 ```
-
-### Step 5 (optional): Run a pipeline on a cluster with Sun Grid Engine
+### Step 5: Run a pipeline with test data and Singularity
 
 ```bash
-nextflow run stracquadaniolab/my-pipeline -profile test,docker,sge
+nextflow run stracquadaniolab/my-pipeline -profile test,singularity
+```
+
+### Step 6 (optional): Run a pipeline on a cluster with SLURM
+
+```bash
+nextflow run stracquadaniolab/my-pipeline -profile test,singularity,slurm
 ```
 
 It is recommended to run this command using `tmux`, such that you can monitor
