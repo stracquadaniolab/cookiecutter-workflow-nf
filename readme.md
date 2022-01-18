@@ -1,5 +1,5 @@
 # A cookiecutter for Nextflow workflows
-![](https://img.shields.io/badge/current_version-v0.5.0-blue)
+![](https://img.shields.io/badge/current_version-v0.6.0-blue)
 ![](https://github.com/stracquadaniolab/cookiecutter-workflow-nf/workflows/build/badge.svg)
 
 A standardized directory structure to build workflows using Nextflow.
