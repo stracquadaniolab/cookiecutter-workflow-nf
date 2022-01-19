@@ -12,7 +12,7 @@ ENTRYPOINT ["tini", "--"]
 CMD ["/bin/bash"]
 
 ## main container
-ARG CONDA_FILE=containers/env.base.yml
+ARG CONDA_FILE=containers/environment.yml
 FROM base_container
 # adding opencontainer labels to link registry to github repository
 LABEL org.opencontainers.image.title="{{ cookiecutter.archetype_id }}"

@@ -3,7 +3,7 @@
 	"name": "{{ cookiecutter.archetype_name }}",
 	"dockerFile": "containers/Dockerfile",
 	"context": ".",
-	"build": {"args": {"CONDA_FILE": "containers/env.dev.yml"}},
+	"build": {"args": {"CONDA_FILE": "containers/environment.yml"}},
 
 	// Set *default* container specific settings.json values.
 	"settings": {
