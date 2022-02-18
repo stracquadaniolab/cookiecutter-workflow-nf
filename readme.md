@@ -9,15 +9,11 @@ A standardized directory structure to build workflows using Nextflow.
 ```
 |-- bin
 |   `-- main.py
-|-- conf
-|   |-- base.config
-|   |-- ci.config
-|   |-- sge.config
-|   |-- test.config
-|   `-- workstation.config
+|-- conf 
+|   `-- base.config
 |-- containers
+|-- |-- environment.yml
 |   `-- Dockerfile
-|-- environment.yml
 |-- main.nf
 |-- nextflow.config
 `-- testdata
