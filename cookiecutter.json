@@ -8,6 +8,7 @@
     "archetype_description": "A short description of the project.",
     "archetype_license": ["MIT", "BSD", "None"],
     "_copy_without_render": [
-        ".github/workflows/ci.yml"
+        ".github/workflows/ci.yml",
+        ".bumpversion.cfg"
     ]
 }
