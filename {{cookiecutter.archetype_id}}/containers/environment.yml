@@ -4,5 +4,6 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
+  - git
   - python>=3.8
   - docopt
