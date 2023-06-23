@@ -1,0 +1,36 @@
+{
+	// setup a container to develop a python package using miniconda3
+	"name": "{{ cookiecutter.archetype_name }}",
+	"dockerFile": "Dockerfile",
+
+	// Set *default* container specific settings.json values.
+	// vs set code specific options
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.tabSize": 4,
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "bash",
+						"icon": "terminal-bash"
+					}
+				}
+			},
+			"extensions": [
+				"stkb.rewrap",
+				"aaron-bond.better-comments",
+				"gruntfuggly.todo-tree",
+				"donjayamanne.githistory",
+				"mhutchie.git-graph",
+				"ms-azuretools.vscode-docker", 
+				"ms-python.python", 
+				"christian-kohler.path-intellisense",
+				"njpwerner.autodocstring",
+				"streetsidesoftware.code-spell-checker",
+				"nextflow.nextflow",
+				"timonwong.shellcheck"
+			]
+		}
+	}
+}
