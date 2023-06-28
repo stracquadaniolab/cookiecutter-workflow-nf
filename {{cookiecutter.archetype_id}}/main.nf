@@ -1,20 +1,6 @@
-process PrintHelloOnFile {
-
-    publishDir "${params.resultsDir}", pattern: "results.txt", mode: 'copy'
-
-    input:
-        path data
-
-    output:
-        path 'results.txt'
-
-    """
-        fit.py ${data} > results.txt
-    """
-
-}
+include { Hello } from './modules/hello'
 
 workflow {
-    channel.fromPath("${params.inputFile}") | PrintHelloOnFile
+    channel.fromPath("${params.inputFile}") | Hello
 }
 
