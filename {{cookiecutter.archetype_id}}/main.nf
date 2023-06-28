@@ -1,6 +1,3 @@
-// enabling nextflow DSL v2
-nextflow.enable.dsl=2
-
 process PrintHelloOnFile {
 
     publishDir "${params.resultsDir}", pattern: "results.txt", mode: 'copy'
