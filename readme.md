@@ -7,6 +7,10 @@ A standardized directory structure to build workflows using Nextflow.
 ## Directory structure
 
 ```bash
+├── .devcontainer
+│  ├── devcontainer.json
+│  ├── Dockerfile
+│  └── environment.yml
 ├── .github
 │  └── workflows
 │     └── ci.yml
@@ -14,14 +18,15 @@ A standardized directory structure to build workflows using Nextflow.
 │  ├── fit.py
 │  └── plots.py
 ├── conf
-│  └── base.config
-├── containers
-│  ├── Dockerfile
-│  └── environment.yml
+│  ├── base.config
+│  └── modules.config
+├── modules
+│  └── hello
+│     ├── Dockerfile
+│     └── main.nf
 ├── testdata
 │  └── mydata.txt
 ├── .bumpversion.cfg
-├── .devcontainer.json
 ├── .gitignore
 ├── main.nf
 ├── nextflow.config
@@ -35,7 +40,7 @@ Nextflow DSL2 by default. The workflow parameters are stored in the
 `nextflow.config` file, which in turn include other files in the `conf`
 directory; usually, you only have to define the parameters of your specific
 pipeline, since the `conf/base.conf` file includes profiles to run your workflow
-in different computing environment, e.g. Slurm, GitHub. 
+in different computing environment, architectures, etc. (see Profiles below).
 
 Please, refer to the [Nextflow
 documentation](https://www.nextflow.io/docs/latest/index.html) for an overview
