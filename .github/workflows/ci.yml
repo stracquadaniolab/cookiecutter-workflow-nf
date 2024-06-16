@@ -14,9 +14,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: 'pip'
-      - name: Install cookiecutter 
-        run: |
-          pip install cookiecutter
       - name: Test cookiecutter
         run: |
           cookiecutter . --no-input
