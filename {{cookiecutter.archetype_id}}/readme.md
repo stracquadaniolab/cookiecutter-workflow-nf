@@ -1,6 +1,6 @@
 # {{ cookiecutter.archetype_id }}
 
-![](https://img.shields.io/badge/current_version-0.0.0-blue)
+![](https://img.shields.io/badge/current_version-2024.06.01-blue)
 ![](https://github.com/{{ cookiecutter.archetype_org }}/{{ cookiecutter.archetype_id }}/workflows/build/badge.svg)
 ## Overview
 {{ cookiecutter.archetype_description }}

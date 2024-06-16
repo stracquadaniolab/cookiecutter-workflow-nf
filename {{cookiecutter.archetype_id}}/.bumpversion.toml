@@ -1,0 +1,36 @@
+[tool.bumpversion]
+current_version = "2024.06.01"
+parse = """(?x)                     # Verbose mode
+    (?P<release>                    # The release part
+        (?:[1-9][0-9]{3})\\.        # YYYY.
+        (?:1[0-2]|0[1-9])\\.         # 0M.
+        (?:3[0-1]|[1-2][0-9]|0[1-9]) # 0D
+    )
+    (?:\\.(?P<patch>\\d+))?         # .patch, optional
+"""
+serialize = ["{release}.{patch}", "{release}"]
+search = "{current_version}"
+replace = "{new_version}"
+regex = false
+ignore_missing_version = false
+ignore_missing_files = false
+tag = true
+sign_tags = false
+tag_name = "{new_version}"
+tag_message = "Bump version: {current_version} → {new_version}"
+allow_dirty = false
+commit = true
+message = "Bump version: {current_version} → {new_version}"
+commit_args = ""
+
+# using calver format
+[tool.bumpversion.parts.release]
+calver_format = "{YYYY}.{0M}.{0D}"
+
+# list of files to tag
+[[tool.bumpversion.files]]
+filename = "readme.md"
+
+# list of files to tag
+[[tool.bumpversion.files]]
+filename = "conf/base.config"
