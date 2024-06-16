@@ -26,7 +26,7 @@ A standardized directory structure to build workflows using Nextflow.
 │     └── main.nf
 ├── testdata
 │  └── mydata.txt
-├── .bumpversion.cfg
+├── .bumpversion.toml
 ├── .gitignore
 ├── main.nf
 ├── nextflow.config
@@ -36,11 +36,13 @@ A standardized directory structure to build workflows using Nextflow.
 ## The workflow file
 
 The `main.nf` file contains the entrypoint for the workflow, and it uses
-Nextflow DSL2 by default. The workflow parameters are stored in the
-`nextflow.config` file, which in turn include other files in the `conf`
-directory; usually, you only have to define the parameters of your specific
-pipeline, since the `conf/base.conf` file includes profiles to run your workflow
-in different computing environment, architectures, etc. (see Profiles below).
+Nextflow (>=24.04.2). The workflow parameters are stored in the
+`nextflow.config` file. Process specific requirements, such as number of cpus,
+must be specified in `conf/modules.conf`. Configuration to test your workflow
+must be specified in `conf/test.config`. Finally, the `conf/base.conf` file
+includes profiles to run your workflow in different computing environment,
+architectures, etc. (see Profiles below) and, usually, it does not require 
+any edit.
 
 Please, refer to the [Nextflow
 documentation](https://www.nextflow.io/docs/latest/index.html) for an overview
@@ -48,7 +50,7 @@ of the framework.
 
 ## Custom scripts management
 
-Custom code (aka your scripts and classes) needed by the pipeline should be
+Custom code (aka your scripts and classes) needed by the workflow should be
 added to the `bin` directory; the code in this directory is automatically added
 to `$PATH` when running the pipeline, which makes custom scripts easily portable
 and accessible. If you are using Python, you should have a file for each class
@@ -58,33 +60,14 @@ interface. See the auto-generated pipeline for an example.
 
 ## Software management
 
-Third-party software is managed by `micromamba` and specified in a
-`environment.yml` file; keep the `yml` file updated and specify the version of
-each software you are using in order to ensure reproducibility.
+Third-party software is provisioned through Docker/Singularity containers
+provisioned using the `Wave` infrastructure. For module Dockerfile, specify the
+version of each software you are using in order to ensure reproducibility.
 
 To ensure reproducibility and running experiments on local machines and HPC
 clusters, it is strongly recommended to build a Docker image. The bundled
 `Dockerfile` can be used to build an image with the software specified in your
 `environment.yml` file. To do that, run:
-
-```bash
-docker build . -t ghcr.io/stracquadaniolab/<my-workflow>:<version> -f containers/Dockerfile
-```
-
-where `<my-workflow>` is the name of your workflow and `<version>`
-is the current version of your workflow, starting from `0.0.0`.
-
-The template comes with an auto-generated `.devcontainer.json` file, which
-allows developing your scripts inside a container with all the software
-specified in `environment.yml` using `vscode`.
-
-Sometimes you would want to pull a docker image from GitHub container registry:
-```bash
-docker pull ghcr.io/stracquadaniolab/<workflow_name>:<version>
-```
-In order to successfully pull an image, first you need to authenticate yourself
-with your personal access token, see here: [Authenticating with the container
-registry](https://docs.github.com/en/packages/guides/migrating-to-github-container-registry-for-docker-images#authenticating-with-the-container-registryhttps://docs.github.com/en/packages/guides/migrating-to-github-container-registry-for-docker-images#authenticating-with-the-container-registry)
 
 ## Testing
 
@@ -95,21 +78,21 @@ needed for your workflow to run. See the auto-generated pipeline for an example.
 
 ## Versioning
 
-All projects must follow a semantic version scheme. The format adopted is
-`MAJOR.MINOR.PATCH`:
+All projects must follow a `calver` versionioning scheme. The format adopted is
+`YYYY.0M.0D.<patch>`:
 
-- MAJOR: drastic changes that make disruptive changes with a previous release. 
-- MINOR: add functions to the workflow but keeps everything compatible within
-  the MAJOR version.
-- PATCH: bug fixes or settings update.
+where: 
+- `YYYY` is the year of the commit. 
+- `0M` is the zero-padded month number.
+- `0D` is the zero-padded day number.
+- `patch` is a progressive number to denote minor changes and bugfixes. 
 
-To update the version of your workflow, you should run the following command from 
-the command line: 
+To update the version of your workflow, use `bump-my-version` from the command
+line as follows: 
 
 ```bash
-bump2version major #for major release
-bump2version minor #for minor release
-bump2version patch #for patch release
+bump-my-version bump release  #for major release
+bump-my-version bump patch    #for bug fixes/small changes
 ```
 
 ## Push your code to GitHub
@@ -123,7 +106,8 @@ git commit -am "new: added super cool feature"
 git push -u origin master
 ```
 
-Importantly, after a `bumpversion`, you also have to push the tag just created as follows:
+Importantly, after a `bump-my-version`, you also have to push the tag just
+created as follows:
 
 ```bash
 git push --tags
@@ -131,10 +115,10 @@ git push --tags
 
 ## Continuous integration
 
-Each pipeline comes with a pre-configured GitHub workflow to automatically test
-the code and build a Docker image; the workflow is stored in
-`.github/workflows/ci.yml`. Please note that a Docker image is only released
-when you push a tag.
+Each pipeline comes with a pre-configured GitHub workflow
+(`.github/workflows/ci.yml`) to automatically test the workflow for logical
+correctnes: this means that each process should have a `stub` directive.
+
 ## Documentation
 
 Each workflow must have an updated `readme.md` file, describing:
@@ -146,6 +130,7 @@ Each workflow must have an updated `readme.md` file, describing:
 
 A `readme.md` file with the required sections is automatically generated by this
 cookiecutter.
+
 ## Getting started
 
 ### Step 1: Create a new workflow
