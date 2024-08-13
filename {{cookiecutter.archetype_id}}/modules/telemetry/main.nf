@@ -1,6 +1,6 @@
-process Hello {
+process TELEMETRY {
 
-    publishDir "${params.resultsDir}", pattern: "results.txt", mode: 'copy'
+    publishDir "${params.resultsDir}", pattern: "run_info.txt", mode: 'copy'
 
     input:
         path data
