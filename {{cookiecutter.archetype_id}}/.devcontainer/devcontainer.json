@@ -2,7 +2,6 @@
 	// setup a container to develop a python package using miniconda3
 	"name": "{{ cookiecutter.archetype_name }}",
 	"dockerFile": "Dockerfile",
-
 	// Set *default* container specific settings.json values.
 	// vs set code specific options
 	"customizations": {
@@ -15,12 +14,12 @@
 				"gruntfuggly.todo-tree",
 				"mhutchie.git-graph",
 				"donjayamanne.githistory",
-				"github.vscode-github-actions", 
-				"ms-azuretools.vscode-docker", 
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-docker",
 				"ms-python.python",
-                "ms-python.black-formatter",
+				"ms-python.black-formatter",
 				"njpwerner.autodocstring",
-				"nextflow.nextflow", 
+				"nextflow.nextflow",
 				"timonwong.shellcheck"
 			],
 			"settings": {
@@ -33,14 +32,14 @@
 					}
 				},
 				"python.formatting.provider": "none",
-                "source.organizeImports": true,
+				"source.organizeImports": true,
 				"[python]": {
-                    "editor.defaultFormatter": "ms-python.black-formatter",
-                    "editor.formatOnSave": true,
-                    "editor.codeActionsOnSave": [
-                        "source.organizeImports"
-                    ]
-                }
+					"editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": [
+						"source.organizeImports"
+					]
+				}
 			}
 		}
 	}

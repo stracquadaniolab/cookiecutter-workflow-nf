@@ -5,10 +5,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+
       - name: 'Install Nextflow'
-        uses: stracquadaniolab/gh-action-setup-nextflow@v0.2.0
+        uses: stracquadaniolab/gh-action-setup-nextflow@v23.04.2
+        
       - name: 'Stub testing Nextflow pipeline with test profile'
         run: |
           chmod +x bin/*
-          nextflow run . -profile github,docker,test -stub
+          nextflow run . -profile github,test -stub
+

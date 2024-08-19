@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 """
-    fit.py 
+    run_model.py 
 
     Usage:
-        fit.py <inputfile>
+        run_model.py <inputfile>
 """
 
 from docopt import docopt
